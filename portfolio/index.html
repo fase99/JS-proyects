@@ -1,0 +1,353 @@
+<title>Portfolio</title>
+
+<main>
+    <section>
+        <header>
+            <img src="./tinder-logo.webp" alt="Logo">
+        </header>
+
+        <div class="cards">
+            <article>
+                <img src="./2.webp" alt="Alex, brown hair man, 25 years old">
+                <h2>Alex <span>25</span></h2>
+                <div class="choice Nope">
+                    NOPE
+                </div>
+                <div class="choice Yes">
+                    LIKE
+                </div>
+            </article>
+            <article>
+                <img src="./1.webp" alt="Leila, Redhead, 25 years old">
+                <h2>Leila <span>25</span></h2>
+                <div class="choice Nope">
+                    NOPE
+                </div>
+                <div class="choice Yes">
+                    LIKE
+                </div>
+            </article>
+
+            <span>
+                <h2>No hay mas gente cerca de ti...</h2>
+                <h2>Vuelve a intentarlo mas tarde</h2>
+            </span>
+
+
+        </div>
+
+        <footer>
+            <button class="is-refresh" aria-label="undo"></button>
+            <button class="is-remove is-big" aria-label="remove"></button>
+            <button class="is-star" aria-label="star"></button>
+            <button class="is-fav is-big" aria-label="fav"></button>
+            <button class="is-zap" aria-label="zap"></button>
+        </footer>
+
+    </section>
+</main>
+
+<style>
+    *,*::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        display: grid;
+        place-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        user-select: none;
+        background-color: #222;
+    }
+    main {
+        background: url(./iphone.webp) no-repeat;
+        width: 320px;
+        height: 640px;
+        background-size: contain;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+    }
+
+    section {
+       background-color: #f6f6f6;
+       height: 92%;
+       border-radius: 32px;
+       display: flex;
+       gap: 24px;
+       flex-direction: column;
+       overflow: hidden;
+       position: relative;
+       padding: 16px 6px;
+       margin: 25px;
+    }
+
+    header {
+        display: flex;
+        justify-content: center;
+
+        & img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        padding: 0 24px;
+        justify-content: center;
+        align-items: center;
+
+        & button {
+            background: url(./tinder-icons.webp) no-repeat;
+            background-position: 0px 0px;
+            background-size: 175px ;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border: 0;
+            transition: scale .3s ease;
+        
+
+            &:hover {
+                scale: 1.4
+            }
+
+            &.is-big {
+                background-size: 250px;
+                height: 48px;
+                width: 48px;
+            }
+
+            &.is-refresh {
+                background-position: -144px;
+            }
+
+            &.is-remove {
+                background-position: -154px;
+            }
+            &.is-star {
+                background-position: -73px;
+            }
+            &.is-fav {
+                background-position: -45px;
+            }
+            &.is-zap {
+                background-position: 0px;
+            }
+        }
+        
+    }
+
+    .cards {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+
+        & > span {
+            display: grid;
+            place-content: center;
+            color: grey;
+            font-size: 10px;
+            text-align: center;
+            height: 100%;
+            z-index: -1;
+        }
+
+        & article {
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            cursor: grab;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            will-change: transform rotate;
+        
+            &.go-left {
+                transform: translateX(-200%) rotate(-30deg) !important;
+            }
+            
+            &.go-right {
+                transform: translateX(200%) rotate(-30deg) !important;
+            }
+
+            &.reset {
+                transition: transform .3s ease;
+                transform: translateX(0) !important;
+            }
+
+            &.go-left, 
+            &.go-right {
+                transition: transform .3s ease, rotate .3s ease;
+            }
+
+            & .choice {
+                color: black;
+                border: 3px solid;
+                z-index: 9999;
+                border-radius: 8px;
+                opacity: 0;
+                position: absolute;
+                top: 32px;
+                right: 16px;
+                padding: 4px 8px;
+                font-size: 24px;
+                font-weight: bold;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                
+
+                &.Nope {
+                    background-color: rgb(171, 26, 26);
+                    border-color: #f00;
+                    color: #fff;
+                    transform: rotate(30deg);
+                    
+                }
+
+                &.Yes {
+                    background-color: rgb(24, 114, 24);
+                    border-color: #0f0;
+                    color: #fff;
+                    left: 16px;
+                    width: fit-content;
+                    transform: rotate(-30deg);
+                }
+            }
+
+            & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            }
+
+            & h2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 16px;
+                color: #fff;
+                font-size: 24px;
+                font-weight: bold;
+                inset: 0;
+                z-index: 3;
+                align-items: flex-end;
+                display: flex;
+                padding: 16px;
+                background: linear-gradient(to top, #00000088 20%, transparent 40%);
+            }
+
+            & span {
+                margin-left: 6px;
+                font-size: 18px;
+                line-height: 1.4;
+                font-weight: 400;
+            }
+        }
+        
+    }
+</style>
+
+<script>
+    const DECISION_THRESHOLD = 150 //umbral de decision
+    let isAnimating = false;
+    let pullDeltaX= 0 //distancia en que la card se mueve
+
+    function starDrag(e) {
+        if (isAnimating) return
+
+        //se obtiene el primer elemento
+        const actualCard = e.target.closest('article')
+
+        //obtiene la posicion inicial del mouse 
+
+        const startX = e.pageX ?? e.touches[0].pageX
+        
+        //listen the mouse and touch movenements
+        document.addEventListener('mousemove', onMove)
+        document.addEventListener('mouseup', onEnd)
+        document.addEventListener('touchmove', onMove, {passive: true})
+        document.addEventListener('touchend', onEnd, {passive: true})
+        
+        function onMove(e){
+            const currentX = e.pageX ?? e.touches[0].pageX //obtiene la posicion actual del mouse
+            
+            pullDeltaX = currentX - startX //calcula la distancia entre la posicion inicial y la actual
+            
+            if (pullDeltaX === 0) return //si no hay movimiento no hace nada
+
+            isAnimating = true //cambia el estado a animando
+
+            const deg = pullDeltaX / 10 //calcula el angulo de rotacion de la card
+            
+            actualCard.style.transform = `translateX(${pullDeltaX}px) rotate(${deg}deg)` //aplica la transformacion a la card
+            actualCard.style.cursor = 'grabbing' //cambia el cursor a "agarrando"
+            
+            
+
+            const opacity = Math.abs(pullDeltaX) / 100
+
+
+            const isRight = pullDeltaX > 0 
+            
+           /*  const choiceEl = isRight
+                ? actualCard.querySelector('.choice.Yes')
+                : actualCard.querySelector('.choice.Nope') //selecciona el elemento de la card que se va a mostrar
+            
+            choiceEl.style.opacity = opacity */
+            
+            actualCard.querySelector('.choice.Yes').style.opacity = isRight ? opacity : 0 //muestra el elemento de la card que se va a mostrar
+            actualCard.querySelector('.choice.Nope').style.opacity = isRight ? 0 : opacity //muestra el elemento de la card que se va a mostrar
+
+            
+        }
+    
+        function onEnd(e){
+            document.removeEventListener('mousemove', onMove) //remueve el evento de movimiento del mouse
+            document.removeEventListener('mouseup', onEnd) //remueve el evento de fin del movimiento del mouse  
+            document.removeEventListener('touchmove', onMove) //remueve el evento de movimiento del touch   
+            document.removeEventListener('touchend', onEnd) //remueve el evento de fin del movimiento del touch 
+
+            //saber si el usuario tomo una desicion
+
+            const decisionMade = Math.abs(pullDeltaX) >= DECISION_THRESHOLD //si la distancia es mayor al umbral de decision
+
+            if(decisionMade) {
+                const goRight = pullDeltaX >= 0
+                const goLeft = !goRight
+
+                actualCard.classList.add(goRight ? 'go-right' : 'go-left') 
+                actualCard.addEventListener('transitionend', () => {
+                    actualCard.remove()
+                }) 
+            } else {
+                actualCard.classList.add('reset') 
+                actualCard.classList.remove('go-right', 'go-left')
+                
+            }
+
+        actualCard.addEventListener('transitionend', () => {
+            actualCard.removeAttribute('style')
+            actualCard.classList.remove('reset')
+            
+            
+            pullDeltaX = 0
+            isAnimating = false
+        })
+
+
+    }
+    }
+
+
+    document.addEventListener('mousedown', starDrag)
+    document.addEventListener('touchstart', starDrag, {passive: true})
+</script>
